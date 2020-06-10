@@ -6,17 +6,17 @@ import subprocess
 import sys
 
 # Replace with the locations of your binaries and command paths
-# PROJECT_ID = ""  # firebase project you've made in advance
-# GCLOUD_PATH = "" # which gcloud
-# GSUTIL_PATH = "" # which gsutil
-# APK_LOCATION = "" # where your binary is
-# TEST_APK_LOCATION = "" # where your tests are
+PROJECT_ID = ""  # firebase project you've made in advance
+GCLOUD_PATH = "" # which gcloud
+GSUTIL_PATH = "" # which gsutil
+APK_LOCATION = "" # where your binary is
+TEST_APK_LOCATION = "" # where your tests are
 # example locations for my run:
-PROJECT_ID = "slandroidtest"
-GCLOUD_PATH = "/Users/sarah/gcloud/google-cloud-sdk/bin/gcloud"
-GSUTIL_PATH = "/Users/sarah/gcloud/google-cloud-sdk/bin/gsutil"
-APK_LOCATION = "/Users/sarah/Downloads/app-debug.apk"
-TEST_APK_LOCATION = "/Users/sarah/Downloads/app-debug-androidTest.apk"
+# PROJECT_ID = "slandroidtest"
+# GCLOUD_PATH = "/Users/sarah/gcloud/google-cloud-sdk/bin/gcloud"
+# GSUTIL_PATH = "/Users/sarah/gcloud/google-cloud-sdk/bin/gsutil"
+# APK_LOCATION = "/Users/sarah/Downloads/app-debug.apk"
+# TEST_APK_LOCATION = "/Users/sarah/Downloads/app-debug-androidTest.apk"
 LOCAL_OUTPUT_DIR = "./test_output"
 
 def copy_output(target_location):
@@ -41,6 +41,7 @@ def copy_output(target_location):
 
 def output_test_data(run_output):
     """ process output from combined stdout / stderr """
+    # print(run_output.decode("utf8"))
     regex1 = re.compile(b"GCS bucket at \[(.+)\]") # using bytes because of stdout format
     m = re.search(regex1, run_output)
     if m is not None:
